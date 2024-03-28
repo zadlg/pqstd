@@ -1,0 +1,2 @@
+common:avx2 --copt -mavx2
+common:avx2 --copt -mbmi2

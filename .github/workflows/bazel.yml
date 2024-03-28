@@ -1,0 +1,29 @@
+name: Bazel tests
+
+on:
+  push:
+    branches:
+      - "*"
+      - "!sapling-pr-archive-*"
+
+jobs:
+  x86_64:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Setup bazelisk
+        uses: bazelbuild/setup-bazelisk@v3
+
+      - name: Mount bazel cache
+        uses: actions/cache@v4
+        with:
+          path: "~/.cache/bazel"
+          key: bazel
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build & test with Bazel
+        run: bazel test --config=avx2 ...
+        working-directory: bazel/

@@ -1,0 +1,5 @@
+new_local_repository(
+    name = "pqstd-srcs",
+    build_file = "@pqstd//:pqstd-srcs.BUILD.bazel",
+    path = "../",
+)
