@@ -1,17 +1,20 @@
-name: Bazel tests
+name: Bazel 6 tests
 
 on:
   push:
     branches:
-      - "*"
-      - "!sapling-pr-archive-*"
+      - "main"
+  pull_request:
+    paths:
+      - ".github/workflows/bazel-6.yml"
+      - "bazel/6/**"
+      - "vendor/**"
 
 jobs:
-  bazel:
+  bazel-6:
     strategy:
       fail-fast: false
       matrix:
-        version: [6, 7]
         compilation-mode: [dbg, fastbuild, opt]
         target:
           - os: macos
@@ -41,7 +44,7 @@ jobs:
             config_args="--config=${{ matrix.target.config }}"
           fi
           bazel build ${config_args} -c ${{ matrix.compilation-mode }} ...
-        working-directory: bazel/${{ matrix.version }}
+        working-directory: bazel/6
 
       - name: Test with Bazel
         run: |
@@ -50,5 +53,5 @@ jobs:
             config_args="--config=${{ matrix.target.config }}"
           fi
           bazel test ${config_args} -c ${{ matrix.compilation-mode }} ...
-        working-directory: bazel/${{ matrix.version }}
+        working-directory: bazel/6
 
