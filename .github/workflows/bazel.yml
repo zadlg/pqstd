@@ -11,6 +11,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        version: [7]
+        compilation-mode: [dbg, fastbuild, opt]
         target:
           - os: macos
             config: avx2
@@ -30,7 +32,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Build & test with Bazel
-        run: bazel test --config=${{ matrix.target.config }} ...
-        working-directory: bazel/
+      - name: Build with Bazel
+        run: bazel build --config=${{ matrix.target.config }} -c ${{ matrix.compilation-mode }} ...
+        working-directory: bazel/${{ matrix.version }}
+
+      - name: Test with Bazel
+        run: bazel test --config=${{ matrix.target.config }} -c ${{ matrix.compilation-mode }} ...
+        working-directory: bazel/${{ matrix.version }}
 
