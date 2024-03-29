@@ -1,0 +1,9 @@
+workspace(name = "pqstd")
+
+load(":repositories.bzl", "pqstd_repositories")
+
+pqstd_repositories()
+
+load(":deps.bzl", "pqstd_deps")
+
+pqstd_deps()
