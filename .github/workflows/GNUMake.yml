@@ -13,19 +13,24 @@ jobs:
       matrix:
         target:
           - os: macos
-            config: avx2
+            targets_build: all
+            targets_test: tests
+          - os: macos-14
+            targets_build: kyber_ref build_ref_tests
+            targets_test: ref_tests
           - os: ubuntu
-            config: avx2
+            targets_build: all
+            targets_test: tests
     runs-on: ${{ matrix.target.os }}-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Build with GNUMake
-        run: make all
+        run: make ${{ matrix.target.targets_build }}
         working-directory: GNUMake/
 
       - name: Run tests with GNUMake
-        run: make tests
+        run: make ${{ matrix.target.targets_test }}
         working-directory: GNUMake/
 
