@@ -6,8 +6,8 @@ on:
       - "main"
   pull_request:
     paths:
-      - ".github/workflows/bazel-6.yml"
-      - "bazel/6/**"
+      - ".github/workflows/Bazel-6.yml"
+      - "Bazel/6/**"
       - "vendor/**"
 
 jobs:
@@ -44,7 +44,7 @@ jobs:
             config_args="--config=${{ matrix.target.config }}"
           fi
           bazel build ${config_args} -c ${{ matrix.compilation-mode }} ...
-        working-directory: bazel/6
+        working-directory: Bazel/6
 
       - name: Test with Bazel
         run: |
@@ -53,5 +53,5 @@ jobs:
             config_args="--config=${{ matrix.target.config }}"
           fi
           bazel test ${config_args} -c ${{ matrix.compilation-mode }} ...
-        working-directory: bazel/6
+        working-directory: Bazel/6
 
