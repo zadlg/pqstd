@@ -3,8 +3,12 @@ name: GNUMake tests
 on:
   push:
     branches:
-      - "*"
-      - "!sapling-pr-archive-*"
+      - "main"
+  pull_request:
+    paths:
+      - ".github/workflows/GNUMake.yml"
+      - "GNUMake/**"
+      - "vendor/**"
 
 jobs:
   GNUMake:
