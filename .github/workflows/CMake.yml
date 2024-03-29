@@ -1,0 +1,36 @@
+name: CMake tests
+
+on:
+  push:
+    branches:
+      - "*"
+      - "!sapling-pr-archive-*"
+
+jobs:
+  cmake:
+    strategy:
+      fail-fast: false
+      matrix:
+        compilation-mode: [Debug, Release]
+        target:
+          - os: macos
+          - os: macos-14
+          - os: ubuntu
+    runs-on: ${{ matrix.target.os }}-latest
+    steps:
+      - name: Setup CMake 3.12
+        uses: lukka/get-cmake@v3.19.1
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build with CMake
+        run: |
+          mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.compilation-mode }}
+          cmake --build .
+        working-directory: CMake
+
+      - name: Test with CMake
+        run: make test
+        working-directory: CMake/build
+
