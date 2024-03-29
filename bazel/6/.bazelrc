@@ -1,0 +1,5 @@
+common:avx2 --copt -mavx2
+common:avx2 --copt -mbmi2
+
+test --test_output=errors
+test --test_summary=short
