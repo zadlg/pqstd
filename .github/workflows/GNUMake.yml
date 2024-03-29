@@ -31,6 +31,6 @@ jobs:
         working-directory: GNUMake/
 
       - name: Run tests with GNUMake
-        run: make ${{ matrix.target.targets_test }}
+        run: make ${{ matrix.target.targets_test }} >/dev/null
         working-directory: GNUMake/
 
