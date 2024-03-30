@@ -71,4 +71,7 @@ function(add_kyber_library name)
 endfunction()
 
 add_subdirectory("ref")
-add_subdirectory("avx2")
+
+if (PQSTD_AVX2_SUPPORTED)
+    add_subdirectory("avx2")
+endif()
