@@ -1,0 +1,61 @@
+name: Bazel 7 tests
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    paths:
+      - ".github/workflows/Bazel-7.yml"
+      - "Bazel/7/**"
+      - "vendor/**"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  bazel-7:
+    strategy:
+      fail-fast: false
+      matrix:
+        compilation-mode: [dbg, fastbuild, opt]
+        target:
+          - os: macos-latest
+            config: --config=avx2
+          - os: macos-latest
+            config: ""
+          - os: macos-14
+            config: ""
+    runs-on: ${{ matrix.target.os }}
+    steps:
+      - name: Setup bazelisk
+        uses: bazelbuild/setup-bazelisk@v3
+
+      - name: Mount bazel cache
+        uses: actions/cache@v4
+        with:
+          path: "~/.cache/bazel"
+          key: bazel
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build with Bazel
+        run: |
+          config_args="--config=buildbuddy ${{ matrix.target.config }}"
+          bazel build ${config_args} \
+            -c ${{ matrix.compilation-mode }} \
+            --remote_header=x-buildbuddy-api-key="${{ secrets.BUILDBUDDY_API_KEY }}" \
+            ...
+        working-directory: Bazel/7
+
+      - name: Test with Bazel
+        run: |
+          config_args="--config=buildbuddy ${{ matrix.target.config }}"
+          bazel test ${config_args} \
+            -c ${{ matrix.compilation-mode }} \
+            --remote_header=x-buildbuddy-api-key="${{ secrets.BUILDBUDDY_API_KEY }}" \
+            ...
+        working-directory: Bazel/7
+
