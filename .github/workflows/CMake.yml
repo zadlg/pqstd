@@ -39,6 +39,6 @@ jobs:
         working-directory: CMake
 
       - name: Test with CMake
-        run: cmake --test build/
+        run: cmake --build build/ -t test
         working-directory: CMake/
 

@@ -4,6 +4,9 @@ cc_library(
     name = "cpucycles",
     srcs = in_pkg_srcs(["cpucycles.c"]),
     hdrs = in_pkg_srcs(["cpucycles.h"]),
+    target_compatible_with = [
+        "@platforms//cpu:x86_64",
+    ],
 )
 
 cc_library(
