@@ -17,6 +17,7 @@ get_filename_component(PQSTD_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}" DIRECTORY
 message(STATUS "Using sources at ${PQSTD_SOURCE_DIR}")
 
 include(CheckCCompilerFlag)
+set(CMAKE_REQUIRED_FLAGS "-Wunused-arguments -Werror")
 check_c_compiler_flag("-mavx2" avx2Supported)
 check_c_compiler_flag("-mbmi2" bmi2Supported)
 set(PQSTD_AVX2_SUPPORTED FALSE)
