@@ -1,0 +1,34 @@
+"Bazel-6":
+- changed-files:
+  - any-glob-to-any-file:
+    - 'vendor/**'
+    - 'Bazel/6/**'
+    - '.github/workflows/Bazel-6.yml'
+    - 'buildbuddy.yaml'
+
+"Bazel-7":
+- changed-files:
+  - any-glob-to-any-file:
+    - 'vendor/**'
+    - 'Bazel/7/**'
+    - '.github/workflows/Bazel-7.yml'
+    - 'buildbuddy.yaml'
+
+"CMake":
+- changed-files:
+  - any-glob-to-any-file:
+    - 'vendor/**'
+    - 'CMake/**'
+    - '.github/workflows/CMake.yml'
+
+"GNUMake":
+- changed-files:
+  - any-glob-to-any-file:
+    - 'vendor/**'
+    - 'GNUMake/**'
+    - '.github/workflows/GNUMake.yml'
+
+"kyber":
+- changed-files:
+  - any-glob-to-any-file: 'vendor/github.com/pq-crystals/kyber-*/***'
+
