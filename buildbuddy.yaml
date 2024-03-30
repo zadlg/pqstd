@@ -3,26 +3,34 @@ actions:
     triggers:
       push:
         branches:
-          - "main" # <-- replace "main" with your main branch name
+          - "main"
       pull_request:
         branches:
           - "*"
     user: "buildbuddy"
     bazel_workspace_dir: "Bazel/6"
     bazel_commands:
-      - "build --config avx2 --config buildbuddy //..."
-      - "test --config avx2 --config buildbuddy //..."
+      - "build -c dbg --config avx2 --config buildbuddy //..."
+      - "build -c fastbuild --config avx2 --config buildbuddy //..."
+      - "build -c opt --config avx2 --config buildbuddy //..."
+      - "test -c dbg --config avx2 --config buildbuddy //..."
+      - "test -c fastbuild --config avx2 --config buildbuddy //..."
+      - "test -c opt --config avx2 --config buildbuddy //..."
 
   - name: "Bazel 7"
     triggers:
       push:
         branches:
-          - "main" # <-- replace "main" with your main branch name
+          - "main"
       pull_request:
         branches:
           - "*"
     user: "buildbuddy"
     bazel_workspace_dir: "Bazel/7"
     bazel_commands:
-      - "build --config avx2 --config buildbuddy //..."
-      - "test --config avx2 --config buildbuddy //..."
+      - "build -c dbg --config avx2 --config buildbuddy //..."
+      - "build -c fastbuild --config avx2 --config buildbuddy //..."
+      - "build -c opt --config avx2 --config buildbuddy //..."
+      - "test -c dbg --config avx2 --config buildbuddy //..."
+      - "test -c fastbuild --config avx2 --config buildbuddy //..."
+      - "test -c opt --config avx2 --config buildbuddy //..."
