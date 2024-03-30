@@ -3,6 +3,7 @@ common:avx2 --copt -mbmi2
 
 common:buildbuddy --remote_cache=grpcs://remote.buildbuddy.io
 common:buildbuddy --remote_timeout=3600
+common:buildbuddy --experimental_remote_cache_compression
 
 test --test_output=errors
 test --test_summary=short
