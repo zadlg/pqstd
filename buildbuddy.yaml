@@ -1,0 +1,26 @@
+actions:
+  - name: "Bazel 6"
+    triggers:
+      push:
+        branches:
+          - "main" # <-- replace "main" with your main branch name
+      pull_request:
+        branches:
+          - "*"
+    bazel_workspace_dir: "Bazel/6"
+    bazel_commands:
+      - "build --config avx2 //..."
+      - "test --config avx2 //..."
+
+  - name: "Bazel 7"
+    triggers:
+      push:
+        branches:
+          - "main" # <-- replace "main" with your main branch name
+      pull_request:
+        branches:
+          - "*"
+    bazel_workspace_dir: "Bazel/7"
+    bazel_commands:
+      - "build --config avx2 //..."
+      - "test --config avx2 //..."
