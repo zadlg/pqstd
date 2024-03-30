@@ -38,4 +38,5 @@ function(srcs var)
       PARENT_SCOPE)
 endfunction()
 
+enable_testing()
 add_subdirectory("vendor/github.com/pq-crystals/kyber-11d00ff")
