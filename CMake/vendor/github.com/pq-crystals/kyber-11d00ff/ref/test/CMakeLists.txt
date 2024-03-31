@@ -1,8 +1,8 @@
-if (CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64")
-    srcs(sourceFiles cpucycles.c)
-    add_library(kyber-ref-test-cpucycles OBJECT ${sourceFiles})
-    srcs(sourceFiles speed_print.c)
-    add_library(kyber-ref-test-speed_print OBJECT ${sourceFiles})
+if(CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64")
+  srcs(sourceFiles cpucycles.c)
+  add_library(kyber-ref-test-cpucycles OBJECT ${sourceFiles})
+  srcs(sourceFiles speed_print.c)
+  add_library(kyber-ref-test-speed_print OBJECT ${sourceFiles})
 endif()
 
 srcs(sourceFiles test_kyber.c)
