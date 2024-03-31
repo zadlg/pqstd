@@ -72,6 +72,6 @@ endfunction()
 
 add_subdirectory("ref")
 
-if (PQSTD_AVX2_SUPPORTED)
-    add_subdirectory("avx2")
+if(PQSTD_AVX2_SUPPORTED)
+  add_subdirectory("avx2")
 endif()

@@ -30,5 +30,9 @@
 
 "kyber":
 - changed-files:
-  - any-glob-to-any-file: 'vendor/github.com/pq-crystals/kyber-*/***'
+  - any-glob-to-any-file: 'vendor/github.com/pq-crystals/kyber-11d00ff/**'
+
+"dilithium":
+- changed-files:
+  - any-glob-to-any-file: 'vendor/github.com/pq-crystals/dilithium-e7bed62/**'
 
